@@ -44,14 +44,11 @@
     <Reference Include="Google.Protobuf, Version=3.4.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.4.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
-    <Reference Include="Ipfs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\net-ipfs-api.0.4.10.3\lib\net45\Ipfs.dll</HintPath>
+    <Reference Include="Ipfs.Api, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ipfs.Api.0.16.0\lib\net45\Ipfs.Api.dll</HintPath>
     </Reference>
-    <Reference Include="Ipfs.Api, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ipfs.Api.0.15.0\lib\net45\Ipfs.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="Ipfs.Core, Version=0.18.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ipfs.Core.0.18.5\lib\net45\Ipfs.Core.dll</HintPath>
+    <Reference Include="Ipfs.Core, Version=0.18.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ipfs.Core.0.18.2\lib\net45\Ipfs.Core.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
