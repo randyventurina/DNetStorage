@@ -11,7 +11,7 @@ using System.Windows.Forms;
 //using Ipfs;
 using Ipfs.Api;
 //using Ipfs.CoreApi;
-using Ipfs.Commands;
+//using Ipfs.Commands;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
@@ -27,6 +27,8 @@ namespace IPFSTest
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            try
+            {           
             //CancellationToken cancel;
 
             //Process process = Process.Start("cmd.EXE");
@@ -46,9 +48,9 @@ namespace IPFSTest
             //var c = await ipfs.DoCommandAsync("daemon", cancel);
             //var a = await ipfs.FileSystem.ReadAllTextAsync("aa.txt");
            
-            const string filename = "/ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/readme";
-            string text = await ipfs.FileSystem.ReadAllTextAsync(filename);
-            richTextBox1.Text = text;
+            //const string filename = "/ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/readme";
+            //string text = await ipfs.FileSystem.ReadAllTextAsync(filename);
+            //richTextBox1.Text = text;
             /**
             string fileName = @"C:\go-ipfs\hello.txt";
             File.WriteAllText(fileName, "hello world 2");
@@ -96,7 +98,11 @@ namespace IPFSTest
             
             var aaa = await ipfs.FileSystem.AddAsync(stream, "ipfstest");
             richTextBox1.Text = await ipfs.FileSystem.ReadAllTextAsync(aaa.Id.Hash.ToString());
-            
+            }
+            catch (Exception ex)
+            {
+                richTextBox1.Text = ex.Message;
+            }
         }
 
         /**

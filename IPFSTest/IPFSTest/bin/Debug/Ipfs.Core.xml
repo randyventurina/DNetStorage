@@ -568,87 +568,6 @@
               This removes the block from the local cache and does not affect other peers.
             </remarks>
         </member>
-        <member name="T:Ipfs.CoreApi.IBootstrapApi">
-            <summary>
-              Manages the list of initial peers.
-            </summary>
-            <remarks>
-             The API manipulates the "bootstrap list", which contains
-             the addresses of the bootstrap nodes. These are the trusted peers from
-             which to learn about other peers in the network.
-            </remarks>
-            <seealso cref="T:Ipfs.MultiAddress"/>
-            <seealso href="https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/BOOTSTRAP.md">Bootstrap API spec</seealso>
-        </member>
-        <member name="M:Ipfs.CoreApi.IBootstrapApi.AddAsync(Ipfs.MultiAddress,System.Threading.CancellationToken)">
-            <summary>
-              Adds a new peer.
-            </summary>
-            <param name="address">
-              The address must end with the ipfs protocol and the public ID
-              of the peer.  For example "/ip4/104.131.131.82/tcp/4001/ipfs/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ"
-            </param>
-            <param name="cancel">
-              Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
-            </param>
-            <returns>
-              A task that represents the asynchronous operation. The task's result is
-              the address that was added or <b>null</b> if the address is already
-              in the bootstrap list.
-            </returns>
-        </member>
-        <member name="M:Ipfs.CoreApi.IBootstrapApi.AddDefaultsAsync(System.Threading.CancellationToken)">
-            <summary>
-              Adds the default peers to the list.
-            </summary>
-            <param name="cancel">
-              Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
-            </param>
-            <returns>
-              A task that represents the asynchronous operation. The task's result is
-              the sequence of addresses that were added.
-            </returns>
-        </member>
-        <member name="M:Ipfs.CoreApi.IBootstrapApi.ListAsync(System.Threading.CancellationToken)">
-            <summary>
-              List all the peers.
-            </summary>
-            <param name="cancel">
-              Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
-            </param>
-            <returns>
-              A task that represents the asynchronous operation. The task's result is
-              a sequence of addresses.
-            </returns>
-        </member>
-        <member name="M:Ipfs.CoreApi.IBootstrapApi.RemoveAsync(Ipfs.MultiAddress,System.Threading.CancellationToken)">
-            <summary>
-              Delete the specified peer.
-            </summary>
-            <param name="address">
-              The address must end with the ipfs protocol and the public ID
-              of the peer.  For example "/ip4/104.131.131.82/tcp/4001/ipfs/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ"
-            </param>
-            <param name="cancel">
-              Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
-            </param>
-            <returns>
-              A task that represents the asynchronous operation. The task's result is
-              the address that was removed or <b>null</b> if the <paramref name="address"/>
-              is not in the bootstrap list.
-            </returns>
-        </member>
-        <member name="M:Ipfs.CoreApi.IBootstrapApi.RemoveAllAsync(System.Threading.CancellationToken)">
-            <summary>
-              Remove all the peers.
-            </summary>
-            <param name="cancel">
-              Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
-            </param>
-            <returns>
-              A task that represents the asynchronous operation. 
-            </returns>
-        </member>
         <member name="T:Ipfs.CoreApi.IConfigApi">
             <summary>
               Manages the IPFS Configuration.
@@ -746,14 +665,6 @@
             </summary>
             <value>
               An object that implements <see cref="T:Ipfs.CoreApi.IBlockApi"/>.
-            </value>
-        </member>
-        <member name="P:Ipfs.CoreApi.ICoreApi.Bootstrap">
-            <summary>
-              Provides access to the Bootstrap API.
-            </summary>
-            <value>
-              An object that implements <see cref="T:Ipfs.CoreApi.IBootstrapApi"/>.
             </value>
         </member>
         <member name="P:Ipfs.CoreApi.ICoreApi.Config">
@@ -1095,8 +1006,7 @@
               Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
             </param>
             <returns>
-              A task that represents the asynchronous operation. The task's result is
-              the key that was created.
+              The information on the newly created key.
             </returns>
         </member>
         <member name="M:Ipfs.CoreApi.IKeyApi.ListAsync(System.Threading.CancellationToken)">
@@ -1107,8 +1017,7 @@
               Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
             </param>
             <returns>
-              A task that represents the asynchronous operation. The task's result is
-              a sequence of IPFS keys.
+              A sequence of IPFS keys.
             </returns>
         </member>
         <member name="M:Ipfs.CoreApi.IKeyApi.RemoveAsync(System.String,System.Threading.CancellationToken)">
@@ -1122,8 +1031,7 @@
               Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
             </param>
             <returns>
-              A task that represents the asynchronous operation. The task's result is
-              the key that was deleted.
+              A sequence of IPFS keys that were deleted.
             </returns>
         </member>
         <member name="M:Ipfs.CoreApi.IKeyApi.RenameAsync(System.String,System.String,System.Threading.CancellationToken)">
@@ -1140,11 +1048,10 @@
               Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
             </param>
             <returns>
-              A task that represents the asynchronous operation. The task's result is
-              a sequence of IPFS keys that were renamed.
+              A sequence of IPFS keys that were deleted.
             </returns>
         </member>
-        <member name="M:Ipfs.CoreApi.IKeyApi.ExportAsync(System.String,System.Char[],System.Threading.CancellationToken)">
+        <member name="M:Ipfs.CoreApi.IKeyApi.Export(System.String,System.Security.SecureString,System.Threading.CancellationToken)">
             <summary>
               Export a key to a PEM encoded password protected PKCS #8 container.
             </summary>
@@ -1158,11 +1065,11 @@
               Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
             </param>
             <returns>
-               A task that represents the asynchronous operation. The task's result is
+               A task that represents the asynchronous operation. The task's value
                the password protected PEM string.
             </returns>
         </member>
-        <member name="M:Ipfs.CoreApi.IKeyApi.ImportAsync(System.String,System.String,System.Char[],System.Threading.CancellationToken)">
+        <member name="M:Ipfs.CoreApi.IKeyApi.Import(System.String,System.String,System.Security.SecureString,System.Threading.CancellationToken)">
             <summary>
               Import a key from a PEM encoded password protected PKCS #8 container.
             </summary>
@@ -1179,8 +1086,8 @@
               Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
             </param>
             <returns>
-               A task that represents the asynchronous operation. The task's result
-               is the newly imported key.
+               A task that represents the asynchronous operation. The task's value
+               the password protected PEM string.
             </returns>
         </member>
         <member name="T:Ipfs.CoreApi.INameApi">
@@ -1558,69 +1465,10 @@
               Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
             </param>
         </member>
-        <member name="M:Ipfs.CoreApi.ISwarmApi.AddAddressFilterAsync(Ipfs.MultiAddress,System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-              Adds a new address filter.
-            </summary>
-            <param name="address">
-              An allowed address.  For example "/ip4/104.131.131.82" or
-              "/ip4/192.168.0.0/ipcidr/16".
-            </param>
-            <param name="persist">
-              If <b>true</b> the filter will persist across daemon reboots. 
-            </param>
-            <param name="cancel">
-              Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
-            </param>
-            <returns>
-              A task that represents the asynchronous operation. The task's result is
-              the address filter that was added.
-            </returns>
-            <seealso href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing"/>
-        </member>
-        <member name="M:Ipfs.CoreApi.ISwarmApi.ListAddressFiltersAsync(System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-              List all the address filters.
-            </summary>
-            <param name="persist">
-              If <b>true</b> only persisted filters are listed.
-            </param>
-            <param name="cancel">
-              Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
-            </param>
-            <returns>
-              A task that represents the asynchronous operation. The task's result is
-              a sequence of addresses filters.
-            </returns>
-            <seealso href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing"/>
-        </member>
-        <member name="M:Ipfs.CoreApi.ISwarmApi.RemoveAddressFilterAsync(Ipfs.MultiAddress,System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-              Delete the specified address filter.
-            </summary>
-            <param name="address">
-              For example "/ip4/104.131.131.82" or
-              "/ip4/192.168.0.0/ipcidr/16".
-            </param>
-            <param name="persist">
-              If <b>true</b> the filter is also removed from the persistent store. 
-            </param>
-            <param name="cancel">
-              Is used to stop the task.  When cancelled, the <see cref="T:System.Threading.Tasks.TaskCanceledException"/> is raised.
-            </param>
-            <returns>
-              A task that represents the asynchronous operation. The task's result is
-              the address filter that was removed.
-            </returns>
-            <seealso href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing"/>
-        </member>
         <member name="T:Ipfs.Cryptography.BouncyDigest">
             <summary>
               Thin wrapper around bouncy castle digests.
             </summary>
-            <remarks>
-              Makes a Bouncy Caslte IDigest speak .Net HashAlgorithm.
-            </remarks>
         </member>
         <member name="M:Ipfs.Cryptography.BouncyDigest.#ctor(Org.BouncyCastle.Crypto.IDigest)">
             <summary>
@@ -2812,8 +2660,7 @@
               Universally unique identifier.
             </summary>
             <value>
-              This is the <see cref="T:Ipfs.MultiHash"/> of the peer's protobuf encoded
-              <see cref="P:Ipfs.Peer.PublicKey"/>.
+              This is the <see cref="T:Ipfs.MultiHash"/> of the peer's <see cref="P:Ipfs.Peer.PublicKey"/>.
             </value>
         </member>
         <member name="P:Ipfs.Peer.PublicKey">
@@ -2823,11 +2670,6 @@
             <value>
               The base 64 encoding of the node's public key.  The default is <b>null</b>
             </value>
-            <remarks>
-              The IPFS public key is the base-64 encoding of a protobuf encoding containing 
-              a type and the DER encoding of the PKCS Subject Public Key Info.
-            </remarks>
-            <seealso href="https://tools.ietf.org/html/rfc5280#section-4.1.2.7"/>
         </member>
         <member name="P:Ipfs.Peer.Addresses">
             <summary>
